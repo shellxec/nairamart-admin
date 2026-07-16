@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   AreaChart,
   Area,
@@ -25,10 +26,12 @@ const kpiCards = [
   { label: 'Avg Order Value', value: '₦8,200', icon: DollarSign, color: 'emerald' },
 ];
 
-const visitorsData = Array.from({ length: 30 }, (_, i) => ({
-  day: `${i + 1}`,
-  visitors: Math.floor(300 + Math.random() * 200 + (i > 15 ? 50 : 0)),
-}));
+function generateVisitorsData() {
+  return Array.from({ length: 30 }, (_, i) => ({
+    day: `${i + 1}`,
+    visitors: Math.floor(300 + Math.random() * 200 + (i > 15 ? 50 : 0)),
+  }));
+}
 
 const topProducts = [
   { name: 'iPhone 14 Pro Max', views: 3240, sold: 124, revenue: '₦74.4M', conversion: '3.8%' },
@@ -78,6 +81,8 @@ function VisitorsTooltip({
 }
 
 export default function SellerAnalytics() {
+  const [visitorsData] = useState(generateVisitorsData);
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
@@ -115,7 +120,7 @@ export default function SellerAnalytics() {
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={visitorsData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
               <defs>
-                <linearGradient id="visitorGrad" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="seller-analytics-visitorGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#AFE607" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#AFE607" stopOpacity={0} />
                 </linearGradient>
@@ -139,7 +144,7 @@ export default function SellerAnalytics() {
                 dataKey="visitors"
                 stroke="#AFE607"
                 strokeWidth={2}
-                fill="url(#visitorGrad)"
+                fill="url(#seller-analytics-visitorGrad)"
               />
             </AreaChart>
           </ResponsiveContainer>

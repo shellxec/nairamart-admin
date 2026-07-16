@@ -134,7 +134,8 @@ const reports: ReportConfig[] = [
 export default function ReportsAnalytics() {
   const [activeReport, setActiveReport] = useState<ReportType>('revenue');
 
-  const report = reports.find((r) => r.key === activeReport)!;
+  const report = reports.find((r) => r.key === activeReport);
+  if (!report) return null;
 
   return (
     <div className="animate-fade-in space-y-6">
@@ -184,7 +185,7 @@ export default function ReportsAnalytics() {
               <p className="text-white text-xl font-semibold">{kpi.value}</p>
               <div className={`flex items-center gap-0.5 text-xs pb-0.5 ${kpi.change > 0 ? 'text-emerald-400' : kpi.change < 0 ? 'text-red-400' : 'text-nm-muted'}`}>
                 {kpi.change > 0 ? <TrendingUp size={12} /> : kpi.change < 0 ? <TrendingDown size={12} /> : null}
-                <span>{kpi.change !== 0 ? `${Math.abs(kpi.change)}%` : ''}</span>
+                <span>{kpi.change !== 0 ? (Math.abs(kpi.change) > 100 ? `+${kpi.change}` : `${kpi.change}%`) : ''}</span>
               </div>
             </div>
           </div>
@@ -198,7 +199,7 @@ export default function ReportsAnalytics() {
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={report.data}>
               <defs>
-                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="reports-chartGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor={report.color} stopOpacity={0.3} />
                   <stop offset="95%" stopColor={report.color} stopOpacity={0} />
                 </linearGradient>
@@ -220,7 +221,7 @@ export default function ReportsAnalytics() {
                 stroke={report.color}
                 strokeWidth={2}
                 fillOpacity={1}
-                fill="url(#chartGradient)"
+                fill="url(#reports-chartGradient)"
               />
             </AreaChart>
           </ResponsiveContainer>

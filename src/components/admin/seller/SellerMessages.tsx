@@ -192,7 +192,7 @@ export default function SellerMessages() {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-5 space-y-4">
+              <div className="flex-1 overflow-y-auto p-5 space-y-4" role="log" aria-live="polite">
                 {activeMessages.map((msg) => (
                   <div
                     key={msg.id}

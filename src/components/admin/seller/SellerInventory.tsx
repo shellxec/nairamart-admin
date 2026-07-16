@@ -8,7 +8,6 @@ import {
   PackageX,
   Edit3,
   RefreshCw,
-  ArrowUpDown,
 } from 'lucide-react';
 
 // ─── Mock Data ────────────────────────────────────────────────────
@@ -98,7 +97,7 @@ export default function SellerInventory() {
               <AlertTriangle size={18} />
             </div>
             <div>
-              <p className="text-xs text-nm-muted">Low Stock (&lt; 10 units)</p>
+              <p className="text-xs text-nm-muted">Low Stock Alert</p>
               <p className="text-2xl font-bold text-white">{lowStock}</p>
             </div>
           </div>

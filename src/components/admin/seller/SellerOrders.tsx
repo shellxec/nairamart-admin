@@ -14,7 +14,6 @@ import {
   ChevronDown,
   Eye,
   PackageCheck,
-  TruckIcon,
   MapPin,
 } from 'lucide-react';
 
@@ -98,7 +97,8 @@ export default function SellerOrders() {
       o.id.toLowerCase().includes(search.toLowerCase()) ||
       o.customer.toLowerCase().includes(search.toLowerCase());
     const matchStatus = !activeStatus || o.status === activeStatus;
-    return matchSearch && matchStatus;
+    const matchDate = !dateRange || o.date.includes(dateRange);
+    return matchSearch && matchStatus && matchDate;
   });
 
   return (
@@ -117,7 +117,7 @@ export default function SellerOrders() {
             <div
               key={s.label}
               className="bg-nm-card rounded-2xl border border-nm-border p-5 cursor-pointer hover:border-[#AFE607]/30 transition-colors"
-              onClick={() => setActiveStatus(activeStatus === null || stats.find((x) => x.label === s.label)?.label === 'Total Orders' ? null : s.label as OrderStatus)}
+              onClick={() => setActiveStatus(activeStatus === (s.label as OrderStatus) ? null : (s.label as OrderStatus))}
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${colorMap[s.color]}`}>
@@ -148,7 +148,7 @@ export default function SellerOrders() {
             <Filter size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-nm-muted" />
             <select
               value={activeStatus || ''}
-              onChange={(e) => setActiveStatus(e.target.value as OrderStatus || null)}
+              onChange={(e) => setActiveStatus((e.target.value || null) as OrderStatus | null)}
               className="bg-nm-input border border-nm-border rounded-xl pl-8 pr-8 py-2 text-sm text-white appearance-none focus:outline-none focus:border-[#AFE607]/40"
             >
               <option value="">All Status</option>

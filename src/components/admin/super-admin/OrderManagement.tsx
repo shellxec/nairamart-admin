@@ -60,7 +60,8 @@ export default function OrderManagement() {
     const matchStatus = statusFilter === 'all' || o.status === statusFilter;
     const matchPayment = paymentFilter === 'all' || o.payment === paymentFilter;
     const matchSeller = sellerFilter === 'all' || o.seller === sellerFilter;
-    return matchSearch && matchStatus && matchPayment && matchSeller;
+    const matchDate = dateFilter === 'all' || o.date.toLowerCase().includes(dateFilter);
+    return matchSearch && matchStatus && matchPayment && matchSeller && matchDate;
   });
 
   const totalPages = Math.ceil(filtered.length / perPage);
@@ -142,7 +143,7 @@ export default function OrderManagement() {
           </select>
           <select
             value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
+            onChange={(e) => { setDateFilter(e.target.value); setPage(1); }}
             className="bg-nm-input border border-nm-border rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-nm-border-light"
           >
             <option value="all">All Time</option>

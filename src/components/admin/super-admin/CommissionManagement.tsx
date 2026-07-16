@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Save, Pencil, Plus, Calendar, Percent } from 'lucide-react';
+import { Save, Pencil, Plus, Percent } from 'lucide-react';
 
 interface CategoryRate {
   id: string;
@@ -31,7 +31,7 @@ interface HolidayRate {
 export default function CommissionManagement() {
   const [defaultRate, setDefaultRate] = useState(5);
   const [editingDefault, setEditingDefault] = useState(false);
-  const [savedDefault, setSavedDefault] = useState(true);
+  const [saveMsg, setSaveMsg] = useState('');
 
   const [categoryRates, setCategoryRates] = useState<CategoryRate[]>([
     { id: 'cr-1', category: 'Electronics', rate: 8, status: 'active' },
@@ -100,7 +100,7 @@ export default function CommissionManagement() {
                   <input
                     type="number"
                     value={defaultRate}
-                    onChange={(e) => { setDefaultRate(Number(e.target.value)); setSavedDefault(false); }}
+                    onChange={(e) => { setDefaultRate(Number(e.target.value)); }}
                     className="w-20 bg-nm-input border border-nm-border rounded-xl px-3 py-2 text-sm text-white text-center focus:outline-none focus:border-nm-border-light"
                     min={0}
                     max={50}
@@ -109,7 +109,7 @@ export default function CommissionManagement() {
                   <span className="text-nm-muted">%</span>
                 </div>
                 <button
-                  onClick={() => { setEditingDefault(false); setSavedDefault(true); }}
+                  onClick={() => { setEditingDefault(false); setSaveMsg('Saved!'); setTimeout(() => setSaveMsg(''), 2000); }}
                   className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors"
                 >
                   <Save size={14} />
@@ -138,9 +138,10 @@ export default function CommissionManagement() {
             <h3 className="text-white font-semibold">Category Commission Rates</h3>
             <p className="text-nm-muted text-xs mt-0.5">Override default commission for specific categories</p>
           </div>
-          <button className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
+          <button onClick={() => { setSaveMsg('Saved!'); setTimeout(() => setSaveMsg(''), 2000); }} className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
             <Save size={14} />
             Save All
+            {saveMsg && <span className="text-emerald-400 text-xs ml-2">{saveMsg}</span>}
           </button>
         </div>
         <div className="overflow-x-auto">
@@ -214,9 +215,10 @@ export default function CommissionManagement() {
             <h3 className="text-white font-semibold">Holiday Rates</h3>
             <p className="text-nm-muted text-xs mt-0.5">Temporary commission adjustments for promotional periods</p>
           </div>
-          <button className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
+          <button onClick={() => { setSaveMsg('Saved!'); setTimeout(() => setSaveMsg(''), 2000); }} className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
             <Save size={14} />
             Save
+            {saveMsg && <span className="text-emerald-400 text-xs ml-2">{saveMsg}</span>}
           </button>
         </div>
         <div className="overflow-x-auto">
@@ -267,9 +269,10 @@ export default function CommissionManagement() {
               <Plus size={14} />
               Add Override
             </button>
-            <button className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
+            <button onClick={() => { setSaveMsg('Saved!'); setTimeout(() => setSaveMsg(''), 2000); }} className="flex items-center gap-1.5 bg-[#AFE607] text-black font-medium rounded-xl px-4 py-2 text-sm hover:bg-[#9ed006] transition-colors">
               <Save size={14} />
               Save
+              {saveMsg && <span className="text-emerald-400 text-xs ml-2">{saveMsg}</span>}
             </button>
           </div>
         </div>

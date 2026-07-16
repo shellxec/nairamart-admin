@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import {
   AreaChart,
   Area,
@@ -167,7 +166,7 @@ export default function SellerDashboard() {
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={revenueData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
               <defs>
-                <linearGradient id="sellerRevenueGrad" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id="seller-dash-revenueGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#AFE607" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="#AFE607" stopOpacity={0} />
                 </linearGradient>
@@ -186,7 +185,7 @@ export default function SellerDashboard() {
                 dataKey="revenue"
                 stroke="#AFE607"
                 strokeWidth={2}
-                fill="url(#sellerRevenueGrad)"
+                fill="url(#seller-dash-revenueGrad)"
               />
             </AreaChart>
           </ResponsiveContainer>

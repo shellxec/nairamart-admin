@@ -14,21 +14,21 @@ interface Brand {
 }
 
 const brands: Brand[] = [
-  { id: 'BR-001', name: 'Samsung', initial: 'S', color: 'bg-blue-500', products: 342, sellers: 38 },
-  { id: 'BR-002', name: 'Apple', initial: 'A', color: 'bg-gray-400', products: 287, sellers: 42 },
-  { id: 'BR-003', name: 'Tecno', initial: 'T', color: 'bg-emerald-500', products: 456, sellers: 45 },
-  { id: 'BR-004', name: 'Infinix', initial: 'I', color: 'bg-orange-500', products: 398, sellers: 32 },
-  { id: 'BR-005', name: 'Nokia', initial: 'N', color: 'bg-blue-700', products: 156, sellers: 18 },
-  { id: 'BR-006', name: 'Xiaomi', initial: 'X', color: 'bg-amber-500', products: 423, sellers: 29 },
-  { id: 'BR-007', name: 'Oppo', initial: 'O', color: 'bg-green-500', products: 267, sellers: 22 },
-  { id: 'BR-008', name: 'Sony', initial: 'S', color: 'bg-indigo-500', products: 189, sellers: 15 },
-  { id: 'BR-009', name: 'Nike', initial: 'N', color: 'bg-red-500', products: 312, sellers: 28 },
-  { id: 'BR-010', name: 'Adidas', initial: 'A', color: 'bg-sky-500', products: 278, sellers: 25 },
-  { id: 'BR-011', name: 'HP', initial: 'H', color: 'bg-cyan-600', products: 198, sellers: 20 },
-  { id: 'BR-012', name: 'Dell', initial: 'D', color: 'bg-teal-500', products: 167, sellers: 16 },
-  { id: 'BR-013', name: 'Lenovo', initial: 'L', color: 'bg-red-600', products: 234, sellers: 21 },
-  { id: 'BR-014', name: 'LG', initial: 'L', color: 'bg-purple-500', products: 145, sellers: 12 },
-  { id: 'BR-015', name: 'JBL', initial: 'J', color: 'bg-orange-600', products: 89, sellers: 8 },
+  { id: 'BR-001', name: 'Samsung', initial: 'S', color: 'bg-blue-500', products: 342, sellers: 38, status: 'Approved' as const },
+  { id: 'BR-002', name: 'Apple', initial: 'A', color: 'bg-gray-400', products: 287, sellers: 42, status: 'Approved' as const },
+  { id: 'BR-003', name: 'Tecno', initial: 'T', color: 'bg-emerald-500', products: 456, sellers: 45, status: 'Approved' as const },
+  { id: 'BR-004', name: 'Infinix', initial: 'I', color: 'bg-orange-500', products: 398, sellers: 32, status: 'Approved' as const },
+  { id: 'BR-005', name: 'Nokia', initial: 'N', color: 'bg-blue-700', products: 156, sellers: 18, status: 'Approved' as const },
+  { id: 'BR-006', name: 'Xiaomi', initial: 'X', color: 'bg-amber-500', products: 423, sellers: 29, status: 'Approved' as const },
+  { id: 'BR-007', name: 'Oppo', initial: 'O', color: 'bg-green-500', products: 267, sellers: 22, status: 'Approved' as const },
+  { id: 'BR-008', name: 'Sony', initial: 'S', color: 'bg-indigo-500', products: 189, sellers: 15, status: 'Approved' as const },
+  { id: 'BR-009', name: 'Nike', initial: 'N', color: 'bg-red-500', products: 312, sellers: 28, status: 'Approved' as const },
+  { id: 'BR-010', name: 'Adidas', initial: 'A', color: 'bg-sky-500', products: 278, sellers: 25, status: 'Approved' as const },
+  { id: 'BR-011', name: 'HP', initial: 'H', color: 'bg-cyan-600', products: 198, sellers: 20, status: 'Approved' as const },
+  { id: 'BR-012', name: 'Dell', initial: 'D', color: 'bg-teal-500', products: 167, sellers: 16, status: 'Approved' as const },
+  { id: 'BR-013', name: 'Lenovo', initial: 'L', color: 'bg-red-600', products: 234, sellers: 21, status: 'Approved' as const },
+  { id: 'BR-014', name: 'LG', initial: 'L', color: 'bg-purple-500', products: 145, sellers: 12, status: 'Approved' as const },
+  { id: 'BR-015', name: 'JBL', initial: 'J', color: 'bg-orange-600', products: 89, sellers: 8, status: 'Approved' as const },
 ];
 
 const statusColors: Record<Brand['status'], string> = {

@@ -1,0 +1,14 @@
+services:
+  nairamart:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:./db/nairamart.db
+    restart: unless-stopped
+    volumes:
+      - nairamart-data:/app/db
+
+volumes:
+  nairamart-data:

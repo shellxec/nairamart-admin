@@ -175,6 +175,9 @@ export default function SellerSettings() {
           </div>
           <button
             onClick={() => setTwoFA(!twoFA)}
+            role="switch"
+            aria-checked={twoFA}
+            aria-label="Toggle 2FA"
             className={`relative w-11 h-6 rounded-full transition-colors duration-200 ${
               twoFA ? 'bg-[#AFE607]' : 'bg-nm-input border border-nm-border'
             }`}
@@ -209,6 +212,9 @@ export default function SellerSettings() {
               </div>
               <button
                 onClick={() => setNotifications((prev) => ({ ...prev, [item.key]: !prev[item.key] }))}
+                role="switch"
+                aria-checked={notifications[item.key]}
+                aria-label={`Toggle ${item.label.toLowerCase()}`}
                 className={`relative w-11 h-6 rounded-full transition-colors duration-200 shrink-0 ml-4 ${
                   notifications[item.key] ? 'bg-[#AFE607]' : 'bg-nm-input border border-nm-border'
                 }`}
@@ -289,6 +295,9 @@ export default function SellerSettings() {
               </div>
               <button
                 onClick={() => setVatRegistered(!vatRegistered)}
+                role="switch"
+                aria-checked={vatRegistered}
+                aria-label="Toggle VAT registration"
                 className={`relative w-11 h-6 rounded-full transition-colors duration-200 shrink-0 ${
                   vatRegistered ? 'bg-[#AFE607]' : 'bg-nm-input border border-nm-border'
                 }`}
