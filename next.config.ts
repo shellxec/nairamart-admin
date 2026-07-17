@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import type { NextMiddleware } from "next/server";
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },

@@ -184,7 +184,9 @@ export default function CustomerManagement() {
         {/* Pagination */}
         <div className="flex items-center justify-between p-4 border-t border-nm-border">
           <span className="text-sm text-nm-muted">
-            Showing {(page - 1) * perPage + 1}–{Math.min(page * perPage, filtered.length)} of {filtered.length} customers
+            {filtered.length > 0
+              ? `Showing ${(page - 1) * perPage + 1}\u2013${Math.min(page * perPage, filtered.length)} of ${filtered.length} customers`
+              : `No customers found`}
           </span>
           <div className="flex items-center gap-2">
             <button

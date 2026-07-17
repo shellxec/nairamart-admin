@@ -60,7 +60,23 @@ export default function OrderManagement() {
     const matchStatus = statusFilter === 'all' || o.status === statusFilter;
     const matchPayment = paymentFilter === 'all' || o.payment === paymentFilter;
     const matchSeller = sellerFilter === 'all' || o.seller === sellerFilter;
-    const matchDate = dateFilter === 'all' || o.date.toLowerCase().includes(dateFilter);
+    let matchDate = dateFilter === 'all';
+    if (!matchDate && dateFilter !== 'all') {
+      try {
+        const orderDate = new Date(o.date);
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        if (dateFilter === 'today') {
+          matchDate = orderDate >= today;
+        } else if (dateFilter === '7d') {
+          const weekAgo = new Date(today); weekAgo.setDate(weekAgo.getDate() - 7);
+          matchDate = orderDate >= weekAgo;
+        } else if (dateFilter === '30d') {
+          const monthAgo = new Date(today); monthAgo.setDate(monthAgo.getDate() - 30);
+          matchDate = orderDate >= monthAgo;
+        }
+      } catch { matchDate = false; }
+    }
     return matchSearch && matchStatus && matchPayment && matchSeller && matchDate;
   });
 
@@ -281,7 +297,9 @@ export default function OrderManagement() {
         {/* Pagination */}
         <div className="flex items-center justify-between p-4 border-t border-nm-border">
           <span className="text-sm text-nm-muted">
-            Showing {(page - 1) * perPage + 1}–{Math.min(page * perPage, filtered.length)} of {filtered.length} orders
+            {filtered.length > 0
+              ? `Showing ${(page - 1) * perPage + 1}\u2013${Math.min(page * perPage, filtered.length)} of ${filtered.length} orders`
+              : `No orders found`}
           </span>
           <div className="flex items-center gap-2">
             <button

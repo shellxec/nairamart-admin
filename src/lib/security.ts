@@ -28,15 +28,19 @@ export function sanitizeUrl(url: string): string | null {
     if (!["https:", "http:"].includes(parsed.protocol)) return null;
     // Block internal/private IPs
     const hostname = parsed.hostname;
-    if (
+    // IPv4 private ranges
+    const isPrivateIPv4 =
       hostname === "localhost" ||
       hostname === "127.0.0.1" ||
       hostname === "0.0.0.0" ||
-      hostname.startsWith("192.168.") ||
-      hostname.startsWith("10.") ||
-      hostname.startsWith("172.") ||
-      hostname === "[::1]"
-    ) {
+      /^10\./.test(hostname) ||
+      /^192\.168\./.test(hostname) ||
+      /^172\.(1[6-9]|2\d|3[01])\./.test(hostname) ||
+      /^169\.254\./.test(hostname) || // link-local
+      hostname === "[::1]" ||
+      /^fc00:/i.test(hostname) || // IPv6 unique local
+      /^fe80:/i.test(hostname);   // IPv6 link-local
+    if (isPrivateIPv4) {
       return null;
     }
     return url;
